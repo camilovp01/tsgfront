@@ -72,6 +72,11 @@
   <tr *ngFor="let recurso of recursos">
     <td scope="row">{{ recurso.id }}</td>
     <td>{{ recurso.serial }}</td>
+    <ng-container *ngIf="recurso.tipo === null">
+      <td class="text-danger">
+        SIN INFORMACI&Oacute;N
+      </td>
+    </ng-container>
     <ng-container *ngFor="let tipRecurso of tipoRecurso">
       <ng-container *ngIf="recurso.tipo === tipRecurso.id">
         <td>
@@ -79,12 +84,22 @@
         </td>
       </ng-container>
     </ng-container>
+    <ng-container *ngIf="recurso.proveedor === null">
+      <td class="text-danger">
+        SIN INFORMACI&Oacute;N
+      </td>
+    </ng-container>
     <ng-container *ngFor="let prov of proveedor">
       <ng-container *ngIf="recurso.proveedor === prov.id">
         <td>{{ prov.nombre }}</td>
       </ng-container>
     </ng-container>
     <td>{{ recurso.estado }}</td>
+    <ng-container *ngIf="recurso.encargado === null">
+      <td class="text-danger">
+        SIN INFORMACI&Oacute;N
+      </td>
+    </ng-container>
     <ng-container *ngFor="let enca of encargado">
       <ng-container *ngIf="recurso.encargado === enca.id">
         <td>{{ enca.nombre }}</td>

@@ -41,6 +41,11 @@
     <td scope="row">{{ enca.id }}</td>
     <td>{{ enca.nombre }}</td>
     <td>{{ enca.telefono }}</td>
+    <ng-container *ngIf="enca.tipo === null">
+      <td class="text-danger">
+        SIN INFORMACI&Oacute;N
+      </td>
+    </ng-container>
     <ng-container *ngFor="let tipencargado of tipoEncargado">
       <ng-container *ngIf="enca.tipo === tipencargado.id">
         <td>{{ tipencargado.descripcion }}</td>
