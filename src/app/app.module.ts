@@ -10,6 +10,7 @@ import { DataService } from './data.service';
 import { TipoRecursoComponent } from './tipo-recurso/tipo-recurso.component';
 import { EncargadoComponent } from './encargado/encargado.component';
 import { TipoEncargadoComponent } from './tipo-encargado/tipo-encargado.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TipoEncargadoComponent } from './tipo-encargado/tipo-encargado.componen
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

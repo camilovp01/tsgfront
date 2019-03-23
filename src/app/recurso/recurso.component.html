@@ -1,4 +1,58 @@
-<h3>{{ titlulo }}</h3>
+<h3>{{ titlulo }} <button type="button" class="btn btn-success" (click)="mostrarForm()">+</button></h3>
+
+<form [hidden]="is_hidden">
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Serial</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" placeholder="Serial" [(ngModel)]="recurso.serial" name="serial" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Tipo</label>
+    <div class="col-sm-5">
+      <select class="form-control" [(ngModel)]="recurso.tipo" name="tipo" required>
+        <option *ngFor="let tipRecurso of tipoRecurso" [value]="tipRecurso.id">{{tipRecurso.descripcion}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Proveedor</label>
+    <div class="col-sm-5">
+      <select class="form-control" [(ngModel)]="recurso.proveedor" name="proveedor" required>
+        <option *ngFor="let prov of proveedor" [value]="prov.id">{{prov.nombre}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Estado</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" placeholder="Estado" [(ngModel)]="recurso.estado" name="estado" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Encargado</label>
+    <div class="col-sm-5">
+      <select class="form-control" [(ngModel)]="recurso.encargado" name="encargado" required>
+        <option *ngFor="let enca of encargado" [value]="enca.id">{{ enca.nombre }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Marca</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" placeholder="Marca" [(ngModel)]="recurso.marca" name="marca" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <button type="submit" class="btn btn-primary mb-2" (click)="guardarRecurso()">Guardar</button>
+  </div>
+</form>
 <br>
 <table class="table table-dark">
   <tr>
@@ -12,10 +66,10 @@
     <th scope="col">Marca</th>
     <th scope="col">Opciones</th>
   </tr>
-  <tr *ngFor="let recurso of  recursos">
+  <tr *ngFor="let recurso of recursos">
     <td scope="row">{{ recurso.id }}</td>
     <td>{{ recurso.serial }}</td>
-    <ng-container *ngFor="let tipRecurso of  tipoRecurso">
+    <ng-container *ngFor="let tipRecurso of tipoRecurso">
       <ng-container *ngIf="recurso.tipo === tipRecurso.id">
         <td>
           {{ tipRecurso.descripcion }}
@@ -35,6 +89,7 @@
     </ng-container>
     <td>{{ recurso.fechaAsignacion }}</td>
     <td>{{ recurso.marca }}</td>
-    <td>Editar / Eliminar</td>
+    <td><button type="button" class="btn btn-danger btn-sm">Borrar</button> &nbsp; <button type="button"
+        class="btn btn-warning btn-sm">Editar</button></td>
   </tr>
 </table>

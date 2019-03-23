@@ -3,3 +3,7 @@ export class Proveedor {
     nombre: string;
     tipo: number;
 }
+
+export class ProveedorPost {
+    nombre: string;
+}

@@ -13,12 +13,32 @@ export class EncargadoComponent implements OnInit {
   public encargado: Encargado[];
   public tipoEncargado: TipoEncargado[];
   public titlulo = 'Lista de Encargados';
+  public is_hidden = true;
+
+  encarg = {
+    nombre: null,
+    telefono: null,
+    tipo: null
+  }
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.dataService.getEncargado().subscribe((data) => { this.encargado = data });
     this.dataService.getTipoEncargado().subscribe((data) => { this.tipoEncargado = data });
+  }
+
+  mostrarForm() {
+    this.is_hidden = !this.is_hidden;
+  }
+
+  guardarEncargado() {
+    this.dataService.postEncargado(this.encarg).subscribe((res) => {
+      alert("Encargado Guardado!");
+      console.log("Encargado Creado");
+      this.ngOnInit();
+    });
+
   }
 
 }

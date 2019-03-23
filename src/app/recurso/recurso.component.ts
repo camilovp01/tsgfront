@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recurso } from './recurso.model';
 import { DataService } from '../data.service';
-import { forEach } from '@angular/router/src/utils/collection';
 import { TipoRecurso } from '../tipo-recurso/tipo-recurso.model';
 import { Proveedor } from '../proveedor/proveedor.model';
 import { Encargado } from '../encargado/encargado.model';
@@ -17,6 +16,17 @@ export class RecursoComponent implements OnInit {
   public proveedor: Proveedor[];
   public encargado: Encargado[];
   public titlulo = 'Lista de Recursos';
+  public is_hidden = true;
+
+  recurso = {
+    id: null,
+    serial: null,
+    tipo: null,
+    proveedor: null,
+    estado: null,
+    encargado: null,
+    marca: null,
+  }
 
   constructor(private dataService: DataService) { }
 
@@ -26,6 +36,19 @@ export class RecursoComponent implements OnInit {
     this.dataService.getProveedor().subscribe((data) => { this.proveedor = data });
     this.dataService.getEncargado().subscribe((data) => { this.encargado = data });
   }
+
+  mostrarForm() {
+    this.is_hidden = !this.is_hidden;
+  }
+
+  guardarRecurso() {
+    this.dataService.postRecurso(this.recurso).subscribe((res) => {
+      alert("Recurso Guardado!");
+      console.log("Recurso Creado");
+      this.ngOnInit();
+    });
+  }
+
 
 
 }

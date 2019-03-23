@@ -1,4 +1,15 @@
-<h3>{{ titlulo }}</h3>
+<h3>{{ titlulo }} <button type="button" class="btn btn-success" (click)="mostrarForm()">+</button></h3>
+<form [hidden]="is_hidden">
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label">Nombre</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="provee.nombre" name="nombre" required>
+    </div>
+  </div>
+  <div class="form-group row">
+    <button type="submit" class="btn btn-primary mb-2" (click)="guardarProveedor()">Guardar</button>
+  </div>
+</form>
 <br>
 <table class="table table-dark">
   <tr>
@@ -9,6 +20,7 @@
   <tr *ngFor="let prov of  proveedor">
     <td scope="row">{{ prov.id }}</td>
     <td>{{ prov.nombre }}</td>
-    <td>Editar / Eliminar</td>
+    <td><button type="button" class="btn btn-danger btn-sm">Borrar</button> &nbsp; <button type="button"
+      class="btn btn-warning btn-sm">Editar</button></td>
   </tr>
 </table>
