@@ -17,6 +17,7 @@ export class RecursoComponent implements OnInit {
   public encargado: Encargado[];
   public titlulo = 'Lista de Recursos';
   public is_hidden = true;
+  public is_edit = false;
 
   recurso = {
     id: null,
@@ -37,16 +38,55 @@ export class RecursoComponent implements OnInit {
     this.dataService.getEncargado().subscribe((data) => { this.encargado = data });
   }
 
-  mostrarForm() {
+  mostrarForm(recurso?: Recurso) {
+    if (recurso) {
+      this.recurso.id = recurso.id;
+      this.recurso.serial = recurso.serial;
+      this.recurso.tipo = recurso.tipo;
+      this.recurso.proveedor = recurso.proveedor;
+      this.recurso.estado = recurso.estado;
+      this.recurso.encargado = recurso.encargado;
+      this.recurso.marca = recurso.marca;
+      this.is_edit = true;
+    } else {
+      this.recurso.id = null;
+      this.recurso.serial = null;
+      this.recurso.tipo = null;
+      this.recurso.proveedor = null;
+      this.recurso.estado = null;
+      this.recurso.encargado = null;
+      this.recurso.marca = null;
+      this.is_edit = false;
+    }
     this.is_hidden = !this.is_hidden;
   }
 
-  guardarRecurso() {
-    this.dataService.postRecurso(this.recurso).subscribe((res) => {
-      alert("Recurso Guardado!");
-      console.log("Recurso Creado");
-      this.ngOnInit();
-    });
+  guardarRecurso(is_edit: boolean) {
+    if (is_edit) {
+      this.dataService.putRecurso(this.recurso.id, this.recurso).subscribe((res) => {
+        alert("Recurso Editado!");
+        console.log("Recurso Editado");
+        this.ngOnInit();
+      });
+    } else {
+      this.dataService.postRecurso(this.recurso).subscribe((res) => {
+        alert("Recurso Guardado!");
+        console.log("Recurso Creado");
+        this.ngOnInit();
+      });
+    }
+
+  }
+
+  borrarRecurso(id: number, nombre: string) {
+    if (confirm("Se eliminara recurso con serial: " + nombre)) {
+      this.dataService.deleteRecurso(id).subscribe((res) => {
+        alert("Recurso Borrado!");
+        console.log("Recurso Borrado");
+        this.ngOnInit();
+      });
+    }
+
   }
 
 
