@@ -3,11 +3,15 @@
   <div class="form-group row">
     <label class="col-sm-4 col-form-label">Descripcion</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" placeholder="Descripcion" [(ngModel)]="tipoencar.descripcion" name="descripcion" required>
+      <input type="text" class="form-control" placeholder="Descripcion" [(ngModel)]="tipoencar.descripcion"
+        name="descripcion" required>
     </div>
   </div>
+  <ng-container *ngIf="is_edit">
+    <input type="hidden" [(ngModel)]="tipoencar.id" name="id" required>
+  </ng-container>
   <div class="form-group row">
-    <button type="submit" class="btn btn-primary mb-2" (click)="guardarTipoEncargado()">Guardar</button>
+    <button type="submit" class="btn btn-primary mb-2" (click)="guardarTipoEncargado(is_edit)">Guardar</button>
   </div>
 </form>
 <br>
@@ -20,7 +24,8 @@
   <tr *ngFor="let tipencargado of  tipoEncargado">
     <td scope="row">{{ tipencargado.id }}</td>
     <td>{{ tipencargado.descripcion }}</td>
-    <td><button type="button" class="btn btn-danger btn-sm">Borrar</button> &nbsp; <button type="button"
-      class="btn btn-warning btn-sm">Editar</button></td>
+    <td><button type="button" class="btn btn-danger btn-sm"
+        (click)="borrarTipoEncargado(tipencargado.id, tipencargado.descripcion)">Borrar</button> &nbsp; <button
+        type="button" class="btn btn-warning btn-sm" (click)="mostrarForm(tipencargado)">Editar</button></td>
   </tr>
 </table>

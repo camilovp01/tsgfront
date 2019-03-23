@@ -16,6 +16,46 @@ export class DataService {
 
   constructor(private _http: HttpClient) { }
 
+  putRecurso(id: number, recurso: RecursoPost) {
+    return this._http.put(this.apiUrl + 'recurso/' + id + '/', recurso);
+  }
+
+  putProveedor(id: number, proveedor: Proveedor) {
+    return this._http.put(this.apiUrl + 'proveedor/' + id + '/', proveedor);
+  }
+
+  putEncargado(id: number, encargado: Encargado) {
+    return this._http.put(this.apiUrl + 'encargado/' + id + '/', encargado);
+  }
+
+  putTipoRecurso(id: number, tipoRecurso: TipoRecurso) {
+    return this._http.put(this.apiUrl + 'tiporecurso/' + id + '/', tipoRecurso);
+  }
+
+  putTipoEncargado(id: number, tipoencargado: TipoEncargado) {
+    return this._http.put(this.apiUrl + 'tipoencargado/' + id + '/', tipoencargado);
+  }
+
+  deleteRecurso(id: number) {
+    return this._http.delete(this.apiUrl + 'recurso/' + id);
+  }
+
+  deleteProveedor(id: number) {
+    return this._http.delete(this.apiUrl + 'proveedor/' + id);
+  }
+
+  deleteEncargado(id: number) {
+    return this._http.delete(this.apiUrl + 'encargado/' + id);
+  }
+
+  deleteTipoRecurso(id: number) {
+    return this._http.delete(this.apiUrl + 'tiporecurso/' + id);
+  }
+
+  deleteTipoEncargado(id: number) {
+    return this._http.delete(this.apiUrl + 'tipoencargado/' + id);
+  }
+
   postRecurso(recurso: RecursoPost) {
     return this._http.post(this.apiUrl + 'recurso/', recurso);
   }

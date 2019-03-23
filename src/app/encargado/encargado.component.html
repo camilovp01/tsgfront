@@ -9,7 +9,8 @@
   <div class="form-group row">
     <label class="col-sm-4 col-form-label">Tel&eacute;fono</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" placeholder="Tel&eacute;fono" [(ngModel)]="encarg.telefono" name="telefono" required>
+      <input type="text" class="form-control" placeholder="Tel&eacute;fono" [(ngModel)]="encarg.telefono"
+        name="telefono" required>
     </div>
   </div>
   <div class="form-group row">
@@ -20,8 +21,11 @@
       </select>
     </div>
   </div>
+  <ng-container *ngIf="is_edit">
+    <input type="hidden" [(ngModel)]="encarg.id" name="id" required>
+  </ng-container>
   <div class="form-group row">
-    <button type="submit" class="btn btn-primary mb-2" (click)="guardarEncargado()">Guardar</button>
+    <button type="submit" class="btn btn-primary mb-2" (click)="guardarEncargado(is_edit)">Guardar</button>
   </div>
 </form>
 <br>
@@ -42,7 +46,8 @@
         <td>{{ tipencargado.descripcion }}</td>
       </ng-container>
     </ng-container>
-    <td><button type="button" class="btn btn-danger btn-sm">Borrar</button> &nbsp; <button type="button"
-      class="btn btn-warning btn-sm">Editar</button></td>
+    <td><button type="button" class="btn btn-danger btn-sm"
+        (click)="borrarEncargado(enca.id, enca.nombre)">Borrar</button> &nbsp; <button type="button"
+        class="btn btn-warning btn-sm" (click)="mostrarForm(enca)">Editar</button></td>
   </tr>
 </table>

@@ -6,8 +6,11 @@
       <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="provee.nombre" name="nombre" required>
     </div>
   </div>
+  <ng-container *ngIf="is_edit">
+    <input type="hidden" [(ngModel)]="provee.id" name="id" required>
+  </ng-container>
   <div class="form-group row">
-    <button type="submit" class="btn btn-primary mb-2" (click)="guardarProveedor()">Guardar</button>
+    <button type="submit" class="btn btn-primary mb-2" (click)="guardarProveedor(is_edit)">Guardar</button>
   </div>
 </form>
 <br>
@@ -20,7 +23,7 @@
   <tr *ngFor="let prov of  proveedor">
     <td scope="row">{{ prov.id }}</td>
     <td>{{ prov.nombre }}</td>
-    <td><button type="button" class="btn btn-danger btn-sm">Borrar</button> &nbsp; <button type="button"
-      class="btn btn-warning btn-sm">Editar</button></td>
+    <td><button type="button" class="btn btn-danger btn-sm" (click)="borrarProveedor(prov.id, prov.nombre)">Borrar</button> &nbsp; <button type="button"
+      class="btn btn-warning btn-sm" (click)="mostrarForm(prov)">Editar</button></td>
   </tr>
 </table>

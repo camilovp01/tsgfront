@@ -48,9 +48,12 @@
       <input type="text" class="form-control" placeholder="Marca" [(ngModel)]="recurso.marca" name="marca" required>
     </div>
   </div>
+  <ng-container *ngIf="is_edit">
+    <input type="hidden" [(ngModel)]="recurso.id" name="id" required>
+  </ng-container>
 
   <div class="form-group row">
-    <button type="submit" class="btn btn-primary mb-2" (click)="guardarRecurso()">Guardar</button>
+    <button type="submit" class="btn btn-primary mb-2" (click)="guardarRecurso(is_edit)">Guardar</button>
   </div>
 </form>
 <br>
@@ -89,7 +92,8 @@
     </ng-container>
     <td>{{ recurso.fechaAsignacion }}</td>
     <td>{{ recurso.marca }}</td>
-    <td><button type="button" class="btn btn-danger btn-sm">Borrar</button> &nbsp; <button type="button"
-        class="btn btn-warning btn-sm">Editar</button></td>
+    <td><button type="button" class="btn btn-danger btn-sm"
+        (click)="borrarRecurso(recurso.id, recurso.serial)">Borrar</button> &nbsp;
+      <button type="button" class="btn btn-warning btn-sm" (click)="mostrarForm(recurso)">Editar</button></td>
   </tr>
 </table>
