@@ -1,0 +1,14 @@
+<h3>{{ titlulo }}</h3>
+<br>
+<table class="table table-dark">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Descripci&oacute;n</th>
+    <th scope="col">Opciones</th>
+  </tr>
+  <tr *ngFor="let tiprecurso of  tipoRecurso">
+    <td scope="row">{{ tiprecurso.id }}</td>
+    <td>{{ tiprecurso.descripcion }}</td>
+    <td>Editar / Eliminar</td>
+  </tr>
+</table>

@@ -1,0 +1,22 @@
+<h3>{{ titlulo }}</h3>
+<br>
+<table class="table table-dark">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Tel&eacute;fono</th>
+    <th scope="col">Tipo</th>
+    <th scope="col">Opciones</th>
+  </tr>
+  <tr *ngFor="let enca of  encargado">
+    <td scope="row">{{ enca.id }}</td>
+    <td>{{ enca.nombre }}</td>
+    <td>{{ enca.telefono }}</td>
+    <ng-container *ngFor="let tipencargado of tipoEncargado">
+      <ng-container *ngIf="enca.tipo === tipencargado.id">
+        <td>{{ tipencargado.descripcion }}</td>
+      </ng-container>
+    </ng-container>
+    <td>Editar / Eliminar</td>
+  </tr>
+</table>

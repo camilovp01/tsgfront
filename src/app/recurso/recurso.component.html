@@ -1,0 +1,40 @@
+<h3>{{ titlulo }}</h3>
+<br>
+<table class="table table-dark">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Serial</th>
+    <th scope="col">Tipo</th>
+    <th scope="col">Proveedor</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Encargado</th>
+    <th scope="col">Fecha Asignaci&oacute;n</th>
+    <th scope="col">Marca</th>
+    <th scope="col">Opciones</th>
+  </tr>
+  <tr *ngFor="let recurso of  recursos">
+    <td scope="row">{{ recurso.id }}</td>
+    <td>{{ recurso.serial }}</td>
+    <ng-container *ngFor="let tipRecurso of  tipoRecurso">
+      <ng-container *ngIf="recurso.tipo === tipRecurso.id">
+        <td>
+          {{ tipRecurso.descripcion }}
+        </td>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngFor="let prov of proveedor">
+      <ng-container *ngIf="recurso.proveedor === prov.id">
+        <td>{{ prov.nombre }}</td>
+      </ng-container>
+    </ng-container>
+    <td>{{ recurso.estado }}</td>
+    <ng-container *ngFor="let enca of encargado">
+      <ng-container *ngIf="recurso.encargado === enca.id">
+        <td>{{ enca.nombre }}</td>
+      </ng-container>
+    </ng-container>
+    <td>{{ recurso.fechaAsignacion }}</td>
+    <td>{{ recurso.marca }}</td>
+    <td>Editar / Eliminar</td>
+  </tr>
+</table>

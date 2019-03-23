@@ -1,0 +1,14 @@
+<h3>{{ titlulo }}</h3>
+<br>
+<table class="table table-dark">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Opciones</th>
+  </tr>
+  <tr *ngFor="let prov of  proveedor">
+    <td scope="row">{{ prov.id }}</td>
+    <td>{{ prov.nombre }}</td>
+    <td>Editar / Eliminar</td>
+  </tr>
+</table>
